@@ -10,12 +10,12 @@
 
 # === Variables set by makesetup ===
 
-MODOBJS=	  arraymodule.o  mathmodule.o  parsermodule.o  posixmodule.o  regexmodule.o regexpr.o  stropmodule.o  structmodule.o  timemodule.o  fcntlmodule.o  pwdmodule.o  grpmodule.o  cryptmodule.o  selectmodule.o  socketmodule.o  signalmodule.o  audioop.o  imageop.o  rgbimgmodule.o  md5module.o md5c.o  rotormodule.o
+MODOBJS=	  arraymodule.o  mathmodule.o  parsermodule.o  stropmodule.o  structmodule.o  timemodule.o  pwdmodule.o  grpmodule.o  imageop.o  md5module.o md5c.o  rotormodule.o
 MODLIBS=	$(LOCALMODLIBS) $(BASEMODLIBS)
 
 # === Definitions added by makesetup ===
 
-LOCALMODLIBS=   -lm                  
+LOCALMODLIBS=   -lm         
 BASEMODLIBS=
 PYTHONPATH=$(COREPYTHONPATH)
 COREPYTHONPATH=.:$(DESTLIB)$(TESTPATH)$(MACHDEPPATH)$(STDWINPATH)$(TKPATH)
@@ -172,37 +172,18 @@ mathmodule.o: $(srcdir)/mathmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/mathmodule.c
 mathmodule$(SO):  mathmodule.o;   mathmodule.o  -lm -o mathmodule$(SO)
 parsermodule.o: $(srcdir)/parsermodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/parsermodule.c
 parsermodule$(SO):  parsermodule.o;   parsermodule.o  -o parsermodule$(SO)
-posixmodule.o: $(srcdir)/posixmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/posixmodule.c
-posixmodule$(SO):  posixmodule.o;   posixmodule.o  -o posixmodule$(SO)
-regexmodule.o: $(srcdir)/regexmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/regexmodule.c
-regexpr.o: $(srcdir)/regexpr.c; $(CC) $(CFLAGS)  -c $(srcdir)/regexpr.c
-regexmodule$(SO):  regexmodule.o regexpr.o;   regexmodule.o regexpr.o  -o regexmodule$(SO)
 stropmodule.o: $(srcdir)/stropmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/stropmodule.c
 stropmodule$(SO):  stropmodule.o;   stropmodule.o  -o stropmodule$(SO)
 structmodule.o: $(srcdir)/structmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/structmodule.c
 structmodule$(SO):  structmodule.o;   structmodule.o  -o structmodule$(SO)
 timemodule.o: $(srcdir)/timemodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/timemodule.c
 timemodule$(SO):  timemodule.o;   timemodule.o  -o timemodule$(SO)
-fcntlmodule.o: $(srcdir)/fcntlmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/fcntlmodule.c
-fcntlmodule$(SO):  fcntlmodule.o;   fcntlmodule.o  -o fcntlmodule$(SO)
 pwdmodule.o: $(srcdir)/pwdmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/pwdmodule.c
 pwdmodule$(SO):  pwdmodule.o;   pwdmodule.o  -o pwdmodule$(SO)
 grpmodule.o: $(srcdir)/grpmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/grpmodule.c
 grpmodule$(SO):  grpmodule.o;   grpmodule.o  -o grpmodule$(SO)
-cryptmodule.o: $(srcdir)/cryptmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/cryptmodule.c
-cryptmodule$(SO):  cryptmodule.o;   cryptmodule.o  -o cryptmodule$(SO)
-selectmodule.o: $(srcdir)/selectmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/selectmodule.c
-selectmodule$(SO):  selectmodule.o;   selectmodule.o  -o selectmodule$(SO)
-socketmodule.o: $(srcdir)/socketmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/socketmodule.c
-socketmodule$(SO):  socketmodule.o;   socketmodule.o  -o socketmodule$(SO)
-signalmodule.o: $(srcdir)/signalmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/signalmodule.c
-signalmodule$(SO):  signalmodule.o;   signalmodule.o  -o signalmodule$(SO)
-audioop.o: $(srcdir)/audioop.c; $(CC) $(CFLAGS)  -c $(srcdir)/audioop.c
-audioop$(SO):  audioop.o;   audioop.o  -o audioop$(SO)
 imageop.o: $(srcdir)/imageop.c; $(CC) $(CFLAGS)  -c $(srcdir)/imageop.c
 imageop$(SO):  imageop.o;   imageop.o  -o imageop$(SO)
-rgbimgmodule.o: $(srcdir)/rgbimgmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/rgbimgmodule.c
-rgbimgmodule$(SO):  rgbimgmodule.o;   rgbimgmodule.o  -o rgbimgmodule$(SO)
 md5module.o: $(srcdir)/md5module.c; $(CC) $(CFLAGS)  -c $(srcdir)/md5module.c
 md5c.o: $(srcdir)/md5c.c; $(CC) $(CFLAGS)  -c $(srcdir)/md5c.c
 md5module$(SO):  md5module.o md5c.o;   md5module.o md5c.o  -o md5module$(SO)

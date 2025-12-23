@@ -145,7 +145,7 @@ getcopyright()
 #define PYTHONPATH ".:/usr/local/lib/python"
 #endif /* !PYTHONPATH */
 
-extern char *getenv();
+extern char *getenv(const char *);
 
 char *
 getpythonpath()
@@ -183,21 +183,12 @@ getpythonpath()
 extern void initarray();
 extern void initmath();
 extern void initparser();
-extern void initposix();
-extern void initregex();
 extern void initstrop();
 extern void initstruct();
 extern void inittime();
-extern void initfcntl();
 extern void initpwd();
 extern void initgrp();
-extern void initcrypt();
-extern void initselect();
-extern void initsocket();
-extern void initsignal();
-extern void initaudioop();
 extern void initimageop();
-extern void initrgbimg();
 extern void initmd5();
 extern void initrotor();
 
@@ -213,21 +204,12 @@ struct {
 	{"array", initarray},
 	{"math", initmath},
 	{"parser", initparser},
-	{"posix", initposix},
-	{"regex", initregex},
 	{"strop", initstrop},
 	{"struct", initstruct},
 	{"time", inittime},
-	{"fcntl", initfcntl},
 	{"pwd", initpwd},
 	{"grp", initgrp},
-	{"crypt", initcrypt},
-	{"select", initselect},
-	{"socket", initsocket},
-	{"signal", initsignal},
-	{"audioop", initaudioop},
 	{"imageop", initimageop},
-	{"rgbimg", initrgbimg},
 	{"md5", initmd5},
 	{"rotor", initrotor},
 
