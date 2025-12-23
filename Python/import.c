@@ -40,7 +40,7 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 extern int verbose; /* Defined in pythonrun.c */
 
-extern long getmtime(); /* In getmtime.c */
+extern long getmtime(char *); /* In getmtime.c */
 
 #ifdef DEBUG
 #define D(x) x

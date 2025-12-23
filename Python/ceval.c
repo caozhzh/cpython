@@ -2330,7 +2330,8 @@ assign_subscript(w, key, v) /* w[key] = v */
 	typeobject *tp = w->ob_type;
 	sequence_methods *sq;
 	mapping_methods *mp;
-	int (*func)();
+	// int (*func)();
+	objobjargproc func;
 	if ((mp = tp->tp_as_mapping) != NULL &&
 			(func = mp->mp_ass_subscript) != NULL) {
 		return (*func)(w, key, v);

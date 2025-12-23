@@ -33,9 +33,9 @@ extern int suppress_print; /* Needed in ceval.c, declared in pythonrun.c */
 /* Interface to getopt(): */
 extern int optind;
 extern char *optarg;
-extern int getopt(); /* PROTO((int, char **, char *)); -- not standardized */
+extern int getopt(int, char **, char *); /* PROTO((int, char **, char *)); -- not standardized */
 
-extern char *getenv();
+extern char *getenv(const char *);
 
 extern char *getversion();
 extern char *getcopyright();

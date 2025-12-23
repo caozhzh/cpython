@@ -26,7 +26,7 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 #include "allobjects.h"
 
-extern char *getenv();
+extern char *getenv(const char *);
 
 extern char *getversion();
 extern char *getcopyright();

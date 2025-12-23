@@ -1,1 +1,4 @@
 *.o
+*.a
+Parser/pgen
+python

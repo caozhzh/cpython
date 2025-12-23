@@ -44,6 +44,7 @@ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include "mymalloc.h"
 #include "intrcheck.h"
 
+#undef WITH_READLINE
 #ifdef WITH_READLINE
 
 extern char *readline();

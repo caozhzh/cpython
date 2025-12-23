@@ -70,8 +70,8 @@ PYTHONPATH=$(COREPYTHONPATH)
 array arraymodule.c	# array objects
 math mathmodule.c -lm	# math library functions, e.g. sin()
 parser parsermodule.c	# raw interface to the Python parser
-posix posixmodule.c	# posix (UNIX) system calls
-regex regexmodule.c regexpr.c	# Regular expressions, GNU Emacs style
+# posix posixmodule.c	# posix (UNIX) system calls
+# regex regexmodule.c regexpr.c	# Regular expressions, GNU Emacs style
 strop stropmodule.c	# fast string operations implemented in C
 struct structmodule.c	# binary structure packing/unpacking
 time timemodule.c	# time operations and variables
@@ -81,13 +81,13 @@ time timemodule.c	# time operations and variables
 # (If you have a really backward UNIX, select and socket may not be
 # supported...)
 
-fcntl fcntlmodule.c	# fcntl(2) and ioctl(2)
+# fcntl fcntlmodule.c	# fcntl(2) and ioctl(2)
 pwd pwdmodule.c		# pwd(3) 
 grp grpmodule.c		# grp(3)
-crypt cryptmodule.c	# crypt(3)
-select selectmodule.c	# select(2); not on ancient System V
-socket socketmodule.c	# socket(2); not on ancient System V
-signal signalmodule.c	# signal(2)
+# crypt cryptmodule.c	# crypt(3)
+# select selectmodule.c	# select(2); not on ancient System V
+# socket socketmodule.c	# socket(2); not on ancient System V
+# signal signalmodule.c	# signal(2)
 
 
 # Some more UNIX dependent modules -- off by default, since these
@@ -101,9 +101,9 @@ signal signalmodule.c	# signal(2)
 # Multimedia modules -- on by default.
 # These represent audio samples or images as strings
 
-audioop audioop.c	# Operations on audio samples
+# audioop audioop.c	# Operations on audio samples
 imageop imageop.c	# Operations on images
-rgbimg rgbimgmodule.c   # Read SGI RGB image files (but coded portably)
+# rgbimg rgbimgmodule.c   # Read SGI RGB image files (but coded portably)
 
 
 # The stdwin module provides a simple, portable (between X11 and Mac)
