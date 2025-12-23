@@ -1,0 +1,210 @@
+# Generated automatically from Makefile.pre by makesetup.
+# Generated automatically from Makefile.pre.in by configure.
+# META-NOTE: this note is different from the note in the other Makefiles!
+# NOTE: Makefile.pre.in is converted into Makefile.pre by the configure
+# script in the toplevel directory or by ../config.status.
+# Makefile.pre is converted into Makefile by running the makesetup
+# script in the source directory.  Once Makefile exists, it can be
+# brought up to date by running "make Makefile".  (The makesetup also
+# creates config.c from config.c.in in the source directory.)
+
+# === Variables set by makesetup ===
+
+MODOBJS=	  arraymodule.o  mathmodule.o  parsermodule.o  posixmodule.o  regexmodule.o regexpr.o  stropmodule.o  structmodule.o  timemodule.o  fcntlmodule.o  pwdmodule.o  grpmodule.o  cryptmodule.o  selectmodule.o  socketmodule.o  signalmodule.o  audioop.o  imageop.o  rgbimgmodule.o  md5module.o md5c.o  rotormodule.o
+MODLIBS=	$(LOCALMODLIBS) $(BASEMODLIBS)
+
+# === Definitions added by makesetup ===
+
+LOCALMODLIBS=   -lm                  
+BASEMODLIBS=
+PYTHONPATH=$(COREPYTHONPATH)
+COREPYTHONPATH=.:$(DESTLIB)$(TESTPATH)$(MACHDEPPATH)$(STDWINPATH)$(TKPATH)
+MACHDEPPATH=:$(DESTLIB)/$(MACHDEP)
+TESTPATH=:$(DESTLIB)/test
+DESTLIB=$(prefix)/lib/python
+
+
+# === Variables set by configure ===
+
+srcdir=		.
+
+CC=		gcc
+RANLIB=		ranlib
+AR=		ar
+
+DEFS=		-DHAVE_CONFIG_H
+LIBS=		 -ldl
+LIBM=		-lm
+LIBC=		
+
+# Machine-dependent subdirectories
+MACHDEP=	linux6
+
+# Install prefix, may be changed by configure
+prefix=		/usr/local
+
+# Symbols used for using shared libraries
+SO=		.so
+LDSHARED=	ld
+CCSHARED=	
+LINKFORSHARED=	
+DESTSHARED=	$(prefix)/lib/python/$(MACHDEP)
+
+
+# === Variables that are customizable by hand ===
+
+INCLDIR=	$(srcdir)/../Include
+OPT=		-O
+CFLAGS=		$(OPT) -I$(INCLDIR) -I.. $(DEFS)
+
+MKDEP=		mkdep
+SHELL=		/bin/sh
+
+MAKESETUP=	$(srcdir)/makesetup
+
+# === Fixed definitions ===
+
+OBJS=		$(MODOBJS)
+
+LIB=		libModules.a
+
+MYLIBS=		$(LIB) \
+		../Python/libPython.a \
+		../Objects/libObjects.a \
+		../Parser/libParser.a
+
+SYSLIBS=	$(LIBM) $(LIBC)
+
+
+# === Rules ===
+
+all:		$(LIB) ../python
+
+$(LIB):		$(OBJS) Makefile
+		-rm -f $(LIB)
+		$(AR) cr $(LIB) $(OBJS)
+		$(RANLIB) $(LIB)
+
+../python:	config.o $(MYLIBS) Makefile
+		$(CC) $(OPT) config.o $(LINKFORSHARED) \
+		      $(MYLIBS) $(MODLIBS) $(LIBS) $(SYSLIBS) -o python
+		mv python ../python
+
+config.o:	config.c Makefile $(MYLIBS)
+		$(CC) $(CFLAGS) -DPYTHONPATH=\"$(PYTHONPATH)\" -c config.c
+
+clean:
+		-rm -f *.o python core *~ [@,#]* *.old *.orig *.rej
+
+clobber:	clean
+		-rm -f *.a tags TAGS config.c glmodule.c Makefile.pre
+		-rm -f *.so so_locations
+
+config.c Makefile: Makefile.pre config.c.in $(MAKESETUP) Setup
+		$(SHELL) $(MAKESETUP) Setup
+
+Setup:
+		cp $(srcdir)/Setup.in Setup
+
+Makefile.pre:	Makefile.pre.in ../config.status
+		(cd ..; CONFIG_FILES=Modules/Makefile.pre CONFIG_HEADERS= \
+		$(SHELL) config.status)
+
+depend:
+		$(MKDEP) $(CFLAGS) `echo $(OBJS) | tr ' ' '\012' | \
+					sed 's|\(.*\)\.o|$(srcdir)/\1.c|'`
+
+.PRECIOUS:	../python
+
+glmodule.c:	$(srcdir)/cgen.py $(srcdir)/cstubs
+		python $(srcdir)/cgen.py <$(srcdir)/cstubs >glmodule.c
+
+almodule.o: almodule.c
+arraymodule.o: arraymodule.c
+audioop.o: audioop.c
+cdmodule.o: cdmodule.c
+clmodule.o: clmodule.c
+dbmmodule.o: dbmmodule.c
+fcntlmodule.o: fcntlmodule.c
+flmodule.o: flmodule.c
+fmmodule.o: fmmodule.c
+glmodule.o: glmodule.c
+imageop.o: imageop.c
+imgfile.o: imgfile.c
+mathmodule.o: mathmodule.c
+md5c.o: md5c.c
+md5module.o: md5module.c
+mpzmodule.o: mpzmodule.c
+nismodule.o: nismodule.c
+parsermodule.o: parsermodule.c
+posixmodule.o: posixmodule.c
+pwdmodule.o: pwdmodule.c
+regexmodule.o: regexmodule.c
+regexpr.o: regexpr.c
+rgbimgmodule.o: rgbimgmodule.c
+rotormodule.o: rotormodule.c
+selectmodule.o: selectmodule.c
+sgimodule.o: sgimodule.c
+socketmodule.o: socketmodule.c
+stdwinmodule.o: stdwinmodule.c
+stropmodule.o: stropmodule.c
+structmodule.o: structmodule.c
+sunaudiodev.o: sunaudiodev.c
+svmodule.o: svmodule.c
+threadmodule.o: threadmodule.c
+timemodule.o: timemodule.c
+timingmodule.o: timingmodule.c
+xxmodule.o: xxmodule.c
+yuvconvert.o: yuvconvert.c
+
+# Rules to build and install all shared modules
+sharedmods:	$(SHAREDMODS)
+sharedinstall:	$(SHAREDMODS)
+		mv $(SHAREDMODS) $(DESTSHARED)
+
+# Stuff is appended here by makesetup and make depend
+
+# Rules appended by makedepend
+
+arraymodule.o: $(srcdir)/arraymodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/arraymodule.c
+arraymodule$(SO):  arraymodule.o;   arraymodule.o  -o arraymodule$(SO)
+mathmodule.o: $(srcdir)/mathmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/mathmodule.c
+mathmodule$(SO):  mathmodule.o;   mathmodule.o  -lm -o mathmodule$(SO)
+parsermodule.o: $(srcdir)/parsermodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/parsermodule.c
+parsermodule$(SO):  parsermodule.o;   parsermodule.o  -o parsermodule$(SO)
+posixmodule.o: $(srcdir)/posixmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/posixmodule.c
+posixmodule$(SO):  posixmodule.o;   posixmodule.o  -o posixmodule$(SO)
+regexmodule.o: $(srcdir)/regexmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/regexmodule.c
+regexpr.o: $(srcdir)/regexpr.c; $(CC) $(CFLAGS)  -c $(srcdir)/regexpr.c
+regexmodule$(SO):  regexmodule.o regexpr.o;   regexmodule.o regexpr.o  -o regexmodule$(SO)
+stropmodule.o: $(srcdir)/stropmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/stropmodule.c
+stropmodule$(SO):  stropmodule.o;   stropmodule.o  -o stropmodule$(SO)
+structmodule.o: $(srcdir)/structmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/structmodule.c
+structmodule$(SO):  structmodule.o;   structmodule.o  -o structmodule$(SO)
+timemodule.o: $(srcdir)/timemodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/timemodule.c
+timemodule$(SO):  timemodule.o;   timemodule.o  -o timemodule$(SO)
+fcntlmodule.o: $(srcdir)/fcntlmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/fcntlmodule.c
+fcntlmodule$(SO):  fcntlmodule.o;   fcntlmodule.o  -o fcntlmodule$(SO)
+pwdmodule.o: $(srcdir)/pwdmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/pwdmodule.c
+pwdmodule$(SO):  pwdmodule.o;   pwdmodule.o  -o pwdmodule$(SO)
+grpmodule.o: $(srcdir)/grpmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/grpmodule.c
+grpmodule$(SO):  grpmodule.o;   grpmodule.o  -o grpmodule$(SO)
+cryptmodule.o: $(srcdir)/cryptmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/cryptmodule.c
+cryptmodule$(SO):  cryptmodule.o;   cryptmodule.o  -o cryptmodule$(SO)
+selectmodule.o: $(srcdir)/selectmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/selectmodule.c
+selectmodule$(SO):  selectmodule.o;   selectmodule.o  -o selectmodule$(SO)
+socketmodule.o: $(srcdir)/socketmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/socketmodule.c
+socketmodule$(SO):  socketmodule.o;   socketmodule.o  -o socketmodule$(SO)
+signalmodule.o: $(srcdir)/signalmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/signalmodule.c
+signalmodule$(SO):  signalmodule.o;   signalmodule.o  -o signalmodule$(SO)
+audioop.o: $(srcdir)/audioop.c; $(CC) $(CFLAGS)  -c $(srcdir)/audioop.c
+audioop$(SO):  audioop.o;   audioop.o  -o audioop$(SO)
+imageop.o: $(srcdir)/imageop.c; $(CC) $(CFLAGS)  -c $(srcdir)/imageop.c
+imageop$(SO):  imageop.o;   imageop.o  -o imageop$(SO)
+rgbimgmodule.o: $(srcdir)/rgbimgmodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/rgbimgmodule.c
+rgbimgmodule$(SO):  rgbimgmodule.o;   rgbimgmodule.o  -o rgbimgmodule$(SO)
+md5module.o: $(srcdir)/md5module.c; $(CC) $(CFLAGS)  -c $(srcdir)/md5module.c
+md5c.o: $(srcdir)/md5c.c; $(CC) $(CFLAGS)  -c $(srcdir)/md5c.c
+md5module$(SO):  md5module.o md5c.o;   md5module.o md5c.o  -o md5module$(SO)
+rotormodule.o: $(srcdir)/rotormodule.c; $(CC) $(CFLAGS)  -c $(srcdir)/rotormodule.c
+rotormodule$(SO):  rotormodule.o;   rotormodule.o  -o rotormodule$(SO)
