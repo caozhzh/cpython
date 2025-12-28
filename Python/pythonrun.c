@@ -462,6 +462,8 @@ parse_string(str, start)
 	n = parsestring(str, &gram, start, &err);
 	if (n == NULL)
 		err_input(&err);
+	//dumptree(gram, n);
+	//showtree(gram, n);
 	return n;
 }
 

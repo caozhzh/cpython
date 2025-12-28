@@ -63,7 +63,7 @@ WITH=
 
 # Compiler options passed to subordinate makes
 OPT=		-O -g -Wno-implicit-function-declaration -Wno-implicit-int -Wno-return-mismatch -Wno-incompatible-pointer-types \
- -Wno-int-conversion -DHAVE_STDARG_PROTOTYPES # -DHAVE_CONFIG_H -DHAVE_UNISTD_H -DWITH_READLINE=0
+ -Wno-int-conversion -DHAVE_STDARG_PROTOTYPES -DDEBUG # -DHAVE_CONFIG_H -DHAVE_UNISTD_H -DWITH_READLINE=0
 
 # Subdirectories where to run make recursively
 SUBDIRS=	Parser Objects Python Modules

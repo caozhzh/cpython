@@ -149,6 +149,7 @@ parsetok(tok, g, start, err_ret)
 		     addtoken(ps, (int)type, str, tok->lineno)) != E_OK)
 			break;
 	}
+	printtree(ps);
 
 	if (err_ret->error == E_DONE) {
 		n = ps->p_tree;
