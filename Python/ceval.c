@@ -339,6 +339,7 @@ eval_code(co, globals, locals, owner, arg)
 
 #ifdef LLTRACE
 	lltrace = dictlookup(globals, "__lltrace__") != NULL;
+	lltrace = 1;
 #endif
 
 	f = newframeobject(
